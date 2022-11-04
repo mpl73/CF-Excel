@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Cartões{% endblock %}
+
+{% block style %}
+    <style>
+        .btn_criar{
+            position: fixed;
+            right: 15px;
+            bottom: 15px;
+            border-radius: 90px;
+            transition: .5s;
+            color: #fff;
+            background-color: green;
+            border-radius: 12px;
+            font-size: 22px;
+        }
+        .btn_criar:hover{
+            color: #11101d;
+        }
+
+        .list_cartao{
+            background-color: #11101d;
+            padding: 15px;
+            color: #fff;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .list_cartao:hover{
+            background-color: #1d1b31;
+            color: #fff;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .link_cartao:hover{
+            text-decoration: none;
+        }
+
+    </style>
+{% endblock %}
+
+
+{% block content %}
+    <ul class="mr-1 ml-1 mt-1">
+        {% for cartao in cartoes %}
+            <a href="{% url 'editar_cartao' cartao.id %}" class="link_cartao">
+                <li class="list_cartao mb-1">
+                    {{ cartao.id }} - {{ cartao.nome }} | {{ cartao.banco }}
+                </li>
+            </a>
+        {% endfor %}
+    </ul>
+        <a id="" class="btn btn_criar" href="{% url 'novo_cartao' %}">
+            <i class='bx bx-plus-medical' ></i>
+        </a>
+    
+    
+{% endblock %}

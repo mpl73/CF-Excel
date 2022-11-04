@@ -1,0 +1,163 @@
+{% extends 'base.html' %}
+
+{% block title %}Novo Cartão{% endblock %}
+
+{% block style %}
+    <style>
+    </style>
+{% endblock %}
+
+
+{% block content %}  
+    <!-- <div class="ml-3 mr-3 mt-3">
+        <form id="form-contato" method="post" autocomplete="off" onsubmit="return validaForm(this);"> {% csrf_token %}
+            {% for field in form %}
+                <div class="form-group">
+                    <label class="control-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <button class="btn btn-block" type="submit">Submit</button>
+        </form>
+    </div> -->
+
+    <!-- <div class="ml-3 mr-3 mt-3">
+        <form action="." method="post">
+            {% csrf_token %}
+            <div class="form-group">
+                {{ form.nome.label }}
+                {{ form.nome }}
+            </div>
+            <div class="form-group">
+                {{ form.banco.label }}
+                {{ form.banco }}
+            </div>
+            <div class="form-group">
+                {{ form.numero.label }}
+                {{ form.numero }}
+            </div>
+            <div class="form-group">
+                {{ form.fechamento.label }}
+                {{ form.fechamento }}
+            </div>
+            <div class="form-group">
+                {{ form.vencimento.label }}
+                {{ form.vencimento }}
+            </div>
+            <br>
+            <button type="submit" class="btn btn-success" style="width: 100%;">Criar Cartão</button>
+        </form>
+    </div> -->
+
+    <div class="ml-3 mr-3 mt-3">
+        <form id="form-contato" action="{% url 'novo_cartao' %}" method="post" autocomplete="off" onsubmit="return validaForm(this);">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="nome">Nome Cartão</label>
+                <input type="text" name="nome" id="nome" class="form-control" placeholder="Insira o nome do Cartão">
+                <div id="nome-error" class="invalid-feedback">Rect</div>
+            </div>
+            <div class="form-group">
+              <label for="banco">Nome do Banco</label>
+              <input type="text" name="banco" id="banco" class="form-control" placeholder="Insira o banco do seu Cartão">
+              <div id="banco-error" class="invalid-feedback">Rect</div>
+            </div>
+            <div class="form-group">
+              <label for="numero">Numero do Cartão</label>
+              <input type="text" name="numero" id="numero" class="form-control" placeholder="Insira o número do seu Cartão" aria-describedby="helpnumero" maxlength="19">
+              <small id="helpnumero" class="text-muted">XXXX-XXXX-XXXX-XXXX</small>
+              <div id="numero-error" class="invalid-feedback">Rect</div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="fechamento">Fechamento</label>
+                        <input type="number" name="fechamento" id="fechamento" class="form-control" placeholder="Insira o dia de Fechamento">
+                        <div id="fechamento-error" class="invalid-feedback">Rect</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                      <label for="vencimento">Vencimento</label>
+                      <input type="number" name="vencimento" id="vencimento" class="form-control" placeholder="Insira o dia de Vencimento">
+                      <div id="vencimento-error" class="invalid-feedback">Rect</div>
+                    </div>
+                </div>
+              </div>
+              <br>
+            <button type="submit" class="btn btn-success" style="width: 100%;">Criar Cartão</button>
+        </form>
+    </div> 
+
+    <script>
+        function validaForm(frm){
+            val = true;
+            var nome = $('#nome');
+            var nome_error = $('#nome-error');
+            var banco = $('#banco');
+            var banco_error = $('#banco-error');
+            var numero = $('#numero');
+            var numero_error = $('#numero-error');
+            var fechamento = $('#fechamento');
+            var fechamento_error = $('#fechamento-error');
+            var vencimento = $('#vencimento');
+            var vencimento_error = $('#vencimento-error');
+            if(nome.val() == ''){
+                nome.removeClass('is-valid');
+                nome.addClass('is-invalid');
+                nome_error.text('Preencha com o nome do cartão!');
+                val = false;
+            } else{
+                nome.removeClass('is-invalid');
+                nome.addClass('is-valid');
+            }
+
+            if(banco.val() == ''){
+                banco.removeClass('is-valid');
+                banco.addClass('is-invalid');
+                banco_error.text('Preencha com o nome do banco!');
+                val = false;
+            } else{
+                banco.removeClass('is-invalid');
+                banco.addClass('is-valid');
+            }
+
+            if(numero.val() == ''){
+                numero.removeClass('is-valid');
+                numero.addClass('is-invalid');
+                numero_error.text('Preencha com o número do cartão!');
+                val = false;
+            } else if(numero.val().length < 19){
+                numero.removeClass('is-valid');
+                numero.addClass('is-invalid');
+                numero_error.text('Preencha com todos os números!');
+                val = false;
+            } else{
+                numero.removeClass('is-invalid');
+                numero.addClass('is-valid');
+            }
+
+            if(fechamento.val() == ''){
+                fechamento.removeClass('is-valid');
+                fechamento.addClass('is-invalid');
+                fechamento_error.text('Preencha com o dia de fechamento!');
+                val = false;
+            } else{
+                fechamento.removeClass('is-invalid');
+                fechamento.addClass('is-valid');
+            }
+
+            if(vencimento.val() == ''){
+                vencimento.removeClass('is-valid');
+                vencimento.addClass('is-invalid');
+                vencimento_error.text('Preencha com o dia de vencimento!');
+                val = false;
+            } else{
+                vencimento.removeClass('is-invalid');
+                vencimento.addClass('is-valid');
+            }
+
+            return val;
+        }
+    </script>
+{% endblock %}
