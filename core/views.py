@@ -1,9 +1,16 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from . import models
 from . import forms
 
 def home(request):
     return render(request, 'home.html')
+
+def gastos(request):
+    gastos = models.Gasto.objects.filter()
+    context = {
+        'gastos': gastos,
+    }
+    return render(request, 'gastos.html', context)
 
 def cartoes(request):
     cartoes = models.Cartao.objects.all()
@@ -37,7 +44,7 @@ def novo_cartao(request):
         context = {
             'cartoes': cartoes,
         }
-        return render(request, 'cartoes.html', context)
+        return redirect('cartoes')
 
 def editar_cartao(request, id):
     if request.method == 'GET':
@@ -67,7 +74,7 @@ def editar_cartao(request, id):
         context = {
             'cartoes': cartoes,
         }
-        return render(request, 'cartoes.html', context)
+        return redirect('cartoes')
 
 def deletar_cartao(request, id):
     cartao = models.Cartao.objects.get(id=id)
@@ -77,5 +84,5 @@ def deletar_cartao(request, id):
     context = {
         'cartoes': cartoes,
     }
-    return render(request, 'cartoes.html', context)
+    return redirect('cartoes')
 

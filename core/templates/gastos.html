@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}Gastos{% endblock %}
+
+{% block style %}
+    <style>
+        .btn_criar{
+            position: fixed;
+            right: 15px;
+            bottom: 15px;
+            border-radius: 90px;
+            transition: .5s;
+            color: #fff;
+            background-color: green;
+            border-radius: 12px;
+            font-size: 22px;
+        }
+        .btn_criar:hover{
+            color: #11101d;
+        }
+
+        .list_cartao{
+            background-color: #11101d;
+            padding: 15px;
+            color: #fff;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .list_cartao:hover{
+            background-color: #1d1b31;
+            color: #fff;
+            border-radius: 12px;
+            text-align: left;
+        }
+
+        .link_cartao:hover{
+            text-decoration: none;
+        }
+
+        .cabecalho{
+            background-color: #11101d;
+            color: #fff;
+        }
+    </style>
+{% endblock %}
+
+{% block titulo %}
+    Gastos
+{% endblock %}
+
+{% block content %}
+    <div class="content m-2">
+        <table class="table">
+            <thead class="cabecalho">
+                <tr>
+                    <th scope="col">Data</th>
+                    <th scope="col">Motivo</th>
+                    <th scope="col">Valor</th>
+                    <th scope="col">Tipo</th>
+                    <th scope="col">Forma</th>
+                    <th scope="col">Cartão</th>
+                </tr>
+            </thead>
+            <tbody class="corpo">
+                {% for gasto in gastos %}
+                    <tr>
+                        <td>{{ gasto.data }}</td>
+                        <td>{{ gasto.motivo }}</td>
+                        <td>{{ gasto.valor }}</td>
+                        <td>{{ gasto.tipo }}</td>
+                        <td>{{ gasto.forma }}</td>
+                        <td>{{ gasto.cartao }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}

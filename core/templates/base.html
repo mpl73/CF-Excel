@@ -39,6 +39,22 @@
         transition: all 0.5s ease;
       }
 
+      .navbar{
+        position: fixed;
+        height: 60px;
+        width: calc(100% - 78px);
+        top: 0;
+        left: 78px;
+        background: #11101d;
+        padding: 6px 14px;
+        transition: all 0.5s ease;
+      }
+
+      .sidebar.active ~ .navbar{
+        left: 240px;
+        width: calc(100% - 240px);
+      }
+
       .sidebar.active{
         width: 240px;
       }
@@ -284,6 +300,7 @@
         left: 78px;
         overflow: auto;
         transition: all 0.5s ease;
+        transform: translateY(60px);
       }
 
       /* .home_content .text{
@@ -305,18 +322,18 @@
     <div class="sidebar">
       <div class="logo_content">
         <div class="logo">
-          <i class='bx bxl-typescript'></i>
-          <div class="logo_name">TSM</div>
+          <i class='bx bxs-bank'></i>
+          <div class="logo_name">C.F. 1.0.0</div>
         </div>
         <i class='bx bx-menu' id="btn"></i>
       </div>
       <ul class="nav_list">
         <!-- Ferramente de Busca -->
-        <!-- <li>
+        <li>
           <i class="bx bx-search"></i>
           <input type="text" placeholder="Search">
           <span class="tooltip">Search</span>
-        </li> -->
+        </li>
 
         <!-- Home -->
         <li>
@@ -335,14 +352,23 @@
           </a>
           <!-- <span class="tooltip">Cartões</span> -->
         </li>
+
+        <!-- Gastos -->
+        <li>
+          <a href="{% url 'gastos' %}">
+            <i class='bx bxs-wallet' ></i>
+            <span class="links_name">Gastos</span>
+          </a>
+          <!-- <span class="tooltip">Cartões</span> -->
+        </li>
       </ul>
       <div class="profile_content">
         <div class="profile">
           <div class="profile_detail">
             <!-- <img src="profile.jpg" alt=""> -->
             <div class="name_job">
-              <div class="name">Prem Shahi</div>
-              <div class="job">Web Designer</div>
+              <div class="name">Murilo Lattaro</div>
+              <div class="job">Desenvolvedor Full Stack</div>
             </div>
           </div>
           <i class="bx bx-log-out" id="log_out"></i>
@@ -351,9 +377,15 @@
     </div>
     <!-- Sidebar -->
 
+    <nav class="navbar">
+      <div style="color: #fff; font-size: 25px; font-weight: 500;">
+        {% block titulo %}{% endblock %}
+      </div>
+      {% block utility %}{% endblock %}
+    </nav>
+
     <!-- Content -->
     <div class="home_content">
-      <!-- <div class="text">Home content</div> -->
       {% block content %}{% endblock %}
     </div>
     <!-- Content -->

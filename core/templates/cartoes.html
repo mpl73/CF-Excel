@@ -14,6 +14,7 @@
             background-color: green;
             border-radius: 12px;
             font-size: 22px;
+            transform: translateY(-60px);
         }
         .btn_criar:hover{
             color: #11101d;
@@ -37,13 +38,15 @@
         .link_cartao:hover{
             text-decoration: none;
         }
-
     </style>
 {% endblock %}
 
+{% block titulo %}
+    Cartões
+{% endblock %}
 
 {% block content %}
-    <ul class="mr-1 ml-1 mt-1">
+    <ul class="content m-2">
         {% for cartao in cartoes %}
             <a href="{% url 'editar_cartao' cartao.id %}" class="link_cartao">
                 <li class="list_cartao mb-1">
@@ -55,6 +58,4 @@
         <a id="" class="btn btn_criar" href="{% url 'novo_cartao' %}">
             <i class='bx bx-plus-medical' ></i>
         </a>
-    
-    
 {% endblock %}
